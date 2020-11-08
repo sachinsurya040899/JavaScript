@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hotel</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../Font Awesome/css/all.css">
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <style>
+            body{
+                background-color: rgb(73, 72, 72);
+                border: 2px white;
+            }
+            .card{
+                background-color: black;
+                padding: 20px;
+                color: white;
+            }
+            .form-control{
+                width: 100%;
+            }
+        </style>
+        <script>
+            function bookNow(){
+                document.getElementById("displayName").innerHTML=document.getElementById("cusName").value;
+                document.getElementById("displayCheck").innerHTML=document.getElementById("cusDate").value;
+                document.getElementById("displayDay").innerHTML=document.getElementById("cusDay").value;
+                document.getElementById("displayPeople").innerHTML=document.getElementById("cusPeople").value;
+                var advance=document.getElementById("advanceAmount").value;
+                var no_of_days=document.getElementById("cusDay").value;
+                var total=0;
+                var room_type="";
+                var room_cost=0;
+                var extra_aminities="";  
+                var extra_aminities_cost=0;
+                var delux_room=document.getElementById("deluxRoom");
+                var normal_room=document.getElementById("normalRoom");
+                var aminities_ac=document.getElementById("aminitiesAc");
+                var aminities_locker=document.getElementById("aminitiesLocker");
+                if(delux_room.checked){
+                    room_type=delux_room.value;
+                    room_cost=1000;
+                }   
+                if(normal_room.checked){
+                    room_type=normal_room.value;
+                    room_cost=750;
+                } 
+                if(aminities_ac.checked){
+                    extra_aminities +=aminities_ac.value +"<br>";
+                    extra_aminities_cost +=500;
+                }
+                if(aminities_locker.checked){
+                    extra_aminities +=aminities_locker.value +"<br>";
+                    extra_aminities_cost +=1000;
+                }
+                total=(no_of_days*room_cost)+(no_of_days*extra_aminities_cost)-advance;
+                document.getElementById("displayRoom").innerHTML=room_type;
+                document.getElementById("displayAminities").innerHTML=extra_aminities;
+                document.getElementById("displayAdvance").innerHTML=advance;
+                document.getElementById("displayBalance").innerHTML="&#8377;"+total;
+
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+            <!-- Header Section Image Of Hotel Name Starts -->
+            <header>
+                <img src="Images/header.jpg" height="150" width="100%">
+            </header>
+            <!-- Header Section Finished -->
+            <!-- Section Starts -->
+            <section>
+                <!-- Accordion Starts -->
+                <div class="accordion" id="accord">
+                    <!-- Customer Details Starts -->
+                    <div class="card">
+                        <div class="card-header">
+                           <button data-target="#customerDetails" data-toggle="collapse" class="btn btn-danger btn-block"> Customer Details</button> 
+                        </div>
+                        <div class="collapse fade" id="customerDetails" data-parent="#accord">
+                            <div class=form-group>
+                                <label>Customer Name</label>
+                                <div>
+                                    <input type="text" id="cusName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label> Check In Date</label>
+                                <div>
+                                    <input type="date" id="cusDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label> Total No Of Days</label>
+                                <div>
+                                    <input type="text" id="cusDay" class="form-control"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label> Total No Of People</label>
+                                <div>
+                                    <input type="text" id="cusPeople" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Customer Details Finished -->
+                    <!-- Room Details Starts -->
+                    <div class="card">
+                        <div class="card-header">
+                            <button data-toggle="collapse" data-target="#roomDetails" class="btn btn-danger btn-block"> Room Type</button>
+                        </div>
+                        <div class="collapse" id="roomDetails" data-parent="#accord">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h2>Delux Room</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="Images/delux.jpg" width="600px" height="500px">
+                                        </div>
+                                        <div class="card-footer">
+                                            <input type="radio" value="delux" name="room" id="deluxRoom"> &#8377; 1000/day
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h2>Normal Room</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="Images/normal.jpg" width="600px" height="500px">
+                                        </div>
+                                        <div class="card-footer">
+                                            <input type="radio" value="normal" name="room" id="normalRoom"> &#8377; 750/day
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Room Details Finished -->
+                    <!-- Aminities Starts -->
+                    <div class="card">
+                        <div class="card-header">
+                            <button data-target="#aminities" data-toggle="collapse" class="btn btn-danger btn-block"> Aminities</button>
+                        </div>
+                        <div class="collapse" id="aminities" data-parent="#accord">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h2>AC</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="Images/ac.jpg">
+                                        </div>
+                                        <div class="card-footer">
+                                            <input type="checkbox" value="Ac" id="aminitiesAc"> &#8377; 500/day
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2> Locker</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <img src="Images/locker.jpg">
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="checkbox" value="Locker" id="aminitiesLocker"> &#8377; 1000/day
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aminities Finished -->
+                    <!-- Advance Starts -->
+                    <div class="card">
+                        <div class="card-body">
+                            <button data-toggle="collapse" data-target="#advance" class="btn btn-danger btn-block"> Advance</button>
+                            <div class="collapse" id="advance" data-parent="#accord">
+                                <input type="text" id="advanceAmount" class="form-control" placeholder="Enter The Advance Amount" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Advance Finished -->
+                </div>
+                <!-- Accordion Finished -->
+                <button onclick="bookNow()" data-target="#bill" data-toggle="modal" class="btn btn-primary btn-block"> Register</button>
+            </section>
+            <!-- Section Finished -->
+            <!-- Modal Starts -->
+            <div class="modal fade" id="bill">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Invoice</h2>
+                            <button data-dismiss="modal" class="close">x</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Customer-Name</td>
+                                        <td id="displayName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Check In Date</td>
+                                        <td id="displayCheck"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No Of Days</td>
+                                        <td id="displayDay"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No Of People</td>
+                                        <td id="displayPeople"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Room-Type</td>
+                                        <td id="displayRoom"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aminities</td>
+                                        <td id="displayAminities"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Advance</td>
+                                        <td id="displayAdvance"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balance</td>
+                                        <td id="displayBalance"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-block" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Finished -->
+    </body>
+</html>
