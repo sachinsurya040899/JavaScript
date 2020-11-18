@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pin-Verification</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+             var limit_check=3;
+             var pin={value:7777}
+             function verify(){
+                var pin_check=document.getElementById("pin"); 
+                var check_limit=document.getElementById("limit");
+                if(pin_check.value==pin.value && limit_check!=1){
+                    check_limit.innerHTML="Pin Verified".fontcolor("green").fontsize("5");
+                }
+                else{
+                    if(limit_check==1){
+                        check_limit.innerHTML="Card Blocked";
+                    }
+                    else{
+                        limit_check=limit_check-1;
+                        check_limit.innerHTML=(`${limit_check} ${"is left"}`).fontcolor("red");
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body  class="container-fluid">
+       <div class="form-group">
+           <label style="width: 400px; text-align: center; font-family: cursive; font-weight: bold; background-color: burlywood; height: 30px;">Enter Pin</label>
+                <input type="text" id="pin" placeholder="Enter Your Pin" style="width: 1100px; margin-top: 10px;" >
+            <font style="font-family: cursive;" id="limit">&nbsp;</font>
+            <div>
+                <button onclick="verify()" class="btn btn-primary btn-block" id="click">verify</button>
+            </div>
+       </div>
+    </body>
+</html>
